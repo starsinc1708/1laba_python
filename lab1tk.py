@@ -52,7 +52,7 @@ def introduceError(n, t):
 
 class LinearCode:
 
-    def __init__(self, S):
+    def __init__(self,  S):
         self.S = S
         self.G = REF(self.S)
         self.k = self.G.shape[0]
@@ -111,6 +111,7 @@ class LinearCode:
             for p in range(pow(2, j)): #проходим по блокам из единиц в данном столбце
                 for i in range(pow(2,self.k-j)*p+pow(2,self.k-j-1), pow(2,self.k-j)*(p+1)): #по единицам
                     C[i] = (C[i] + G[j]) % 2 #так как на данной позиции 1 - записываем это слагаемое в сумму
+
         C = [list(x) for x in set(tuple(x) for x in C)] #оставляем только уникальные строки
         C.sort(reverse=False) #сортируем, чтобы сравнить со вторым способом
         C = np.array(C) #возращаем к матрице
